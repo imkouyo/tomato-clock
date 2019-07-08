@@ -1,7 +1,14 @@
 <div class="home-layout">
   <div class="left-home-layout">
     <app-mission-input></app-mission-input>
-    <div class="target-mission">The first task</div>
+    <div class="target-mission">
+      <div class="isComplete"></div>
+      <h1>
+        The first task to do today
+      </h1>
+    </div>
+    <app-timer (countDown)="setLoaderBar($event)"></app-timer>
+    <div class="mission"></div>
   </div>
   <div class="right-home-layout">
     <app-header></app-header>
@@ -9,7 +16,7 @@
 
 
   <div class="circle-outer">
-    <mat-progress-spinner mode="determinate" value="50" [diameter]="545" strokeWidth="10" color="">
+    <mat-progress-spinner mode="determinate" [value]="loaderBarValue" [diameter]="545" strokeWidth="10" color="">
     </mat-progress-spinner>
     <div class="circle-inner">
       <button class="timer-control">

@@ -50,8 +50,28 @@
 }
 mat-icon {
   font-size: 70px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  position: relative;
+  top: 15px;
+  left: -10px;
   transform: translate(-50%, -50%);
+  color: #FF4384;
+}
+
+.target-mission {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: 24px;
+  color: #003164;
+  margin-top: 145px;
+  margin-left: 85px;
+}
+
+.isComplete {
+  width: 48px;
+  height: 48px;
+  border-radius: 28px;
+  border: #003164 solid 2px;
+  margin-right: 16px;
+
 }

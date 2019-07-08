@@ -1,0 +1,22 @@
+<div class="home-layout">
+  <div class="left-home-layout">
+    <app-mission-input></app-mission-input>
+    <div class="target-mission">The first task</div>
+  </div>
+  <div class="right-home-layout">
+    <app-header></app-header>
+  </div>
+
+
+  <div class="circle-outer">
+    <mat-progress-spinner mode="determinate" value="50" [diameter]="545" strokeWidth="10" color="">
+    </mat-progress-spinner>
+    <div class="circle-inner">
+      <button class="timer-control">
+        <mat-icon>
+          play_arrow
+        </mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

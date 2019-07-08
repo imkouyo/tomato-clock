@@ -1,0 +1,21 @@
+.header-layout {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 48px 85px 48px 0;
+  box-sizing: border-box;
+}
+li {
+  list-style: none;
+}
+
+.header-title {
+  writing-mode: vertical-rl;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+mat-icon {
+  color: white;
+}

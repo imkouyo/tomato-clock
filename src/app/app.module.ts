@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './component/header/header.component';
 import {MatIconModule, MatProgressSpinnerModule} from '@angular/material';
 import { MissionInputComponent } from './component/mission-input/mission-input.component';
+import {TimeControlService} from './service/time-control.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { MissionInputComponent } from './component/mission-input/mission-input.c
     MatIconModule,
     MatProgressSpinnerModule,
   ],
-  providers: [],
+  providers: [TimeControlService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

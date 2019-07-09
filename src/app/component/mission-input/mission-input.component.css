@@ -7,7 +7,10 @@ input::placeholder {
 
 input {
   background-color: transparent;
-  border: 0px solid;
+  border: 0 solid;
+  font-size: 16px;
+  font-weight: bold;
+  color: #FF4384;
 }
 
 .submit-btn {

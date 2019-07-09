@@ -1,6 +1,7 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {reduce} from 'rxjs/operators';
-import {TimeInterval} from 'rxjs';
+import {Subscription, TimeInterval} from 'rxjs';
+import {TimeControlService} from '../../service/time-control.service';
 
 @Component({
   selector: 'app-timer',
@@ -9,28 +10,61 @@ import {TimeInterval} from 'rxjs';
 })
 export class TimerComponent implements OnInit, OnDestroy {
 
+  @Output() countDown = new EventEmitter<number>();
+  @Input() isCounting;
+
   TIMEUNIT = 1500;
+
   min: number;
   sec: number;
-  sumtime = this.TIMEUNIT;
-  @Output() countDown = new EventEmitter<number>();
+  timeAccumulator: number;
+  sumTime: number;
+
   interval: number;
-  constructor() { }
+
+  timeSubscription = new Subscription();
+
+  constructor(private timeControlService: TimeControlService) {
+    this.reset();
+  }
+
 
   ngOnInit() {
-    let timeAccumulator = 0;
-    this.interval = setInterval(() => {
-      timeAccumulator += 1;
-      this.min = Math.floor(this.sumtime / 60);
-      this.sec = this.sumtime % 60;
-      this.sumtime -= 1;
-      this.countDown.emit(Math.floor(timeAccumulator * 100 / this.TIMEUNIT));
-    }, 1000 );
+    this.timeSubscription = this.timeControlService.clickTime$.subscribe(sign => {
+      if (sign === 'start') {
+        this.onStart();
+      } else if (sign === 'pause') {
+        this.onPause();
+      } else if (sign === 'reset') {
+        this.reset();
+        this.onPause();
+      }
+    });
   }
+  reset() {
+    this.timeAccumulator = 0;
+    this.sumTime = this.TIMEUNIT;
+    this.min = Math.floor(this.sumTime / 60);
+    this.sec = this.sumTime % 60;
+  }
+
 
   ngOnDestroy(): void {
-    clearInterval(this.interval);
+    this.timeSubscription.unsubscribe();
   }
 
 
+  onStart() {
+      this.interval = setInterval(() => {
+      this.timeAccumulator += 1;
+      this.sumTime -= 1;
+      this.min = Math.floor(this.sumTime / 60);
+      this.sec = this.sumTime % 60;
+      this.countDown.emit(Math.floor(this.timeAccumulator * 100 / this.TIMEUNIT));
+    }, 1000);
+  }
+
+  onPause() {
+    clearInterval(this.interval);
+  }
 }

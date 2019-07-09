@@ -7,6 +7,8 @@ export const TODOMOCK = [
     id: 2,
     taskName: 'The second task to do today'
   },
-
-
-]
+  {
+    id: 3,
+    taskName: 'The third task to do today'
+  },
+];

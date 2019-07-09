@@ -40,6 +40,10 @@
   background-color: #FF4384;
 }
 
+.start-inner {
+  background-color: #FFFFFF;
+}
+
 .timer-control {
   width: 100px;
   height: 100px;
@@ -48,13 +52,24 @@
   border: 0 solid;
   position: relative;
 }
-mat-icon {
+.timer-control > mat-icon {
   font-size: 70px;
   position: relative;
   top: 15px;
   left: -10px;
   transform: translate(-50%, -50%);
+}
+
+.start-timer-control {
+  background-color: #FF4384;
+}
+
+.timer-control > .play {
   color: #FF4384;
+}
+
+.timer-control > .pause {
+  color: white;
 }
 
 .target-mission {
@@ -68,10 +83,51 @@ mat-icon {
 }
 
 .isComplete {
+  border: #003164 solid 2px;
+}
+
+.isComplete[size=lg] {
   width: 48px;
   height: 48px;
   border-radius: 28px;
-  border: #003164 solid 2px;
   margin-right: 16px;
+}
+.isComplete[size=sm] {
+  width: 16px;
+  height: 16px;
+  border-radius: 28px;
+  margin-right: 4px;
+}
 
+.mission {
+  display: flex;
+  border-bottom: #bbbbbb solid 2px;
+  width: 445px;
+  margin-left: 85px;
+  padding: 15px 0;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.task-set {
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  border: #003164 1px solid;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: transparent;
+
+}
+
+.task-set > mat-icon {
+  color: #003164;
+}
+
+.task-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

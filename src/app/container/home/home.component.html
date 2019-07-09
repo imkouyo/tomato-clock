@@ -2,13 +2,24 @@
   <div class="left-home-layout">
     <app-mission-input></app-mission-input>
     <div class="target-mission">
-      <div class="isComplete"></div>
+      <div class="isComplete" size="lg"></div>
       <h1>
-        The first task to do today
+        {{mainTask.taskName}}
       </h1>
     </div>
-    <app-timer (countDown)="setLoaderBar($event)"></app-timer>
-    <div class="mission"></div>
+    <app-timer (countDown)="setLoaderBar($event)" [isCounting]="isCounting"></app-timer>
+    <div *ngFor="let task of subTasks" class="mission" (click)="changeTask(task)">
+      <div class="task-group">
+        <div class="isComplete" size=sm></div>
+        <div>{{task.taskName}}</div>
+      </div>
+      <button class="task-set">
+        <mat-icon>
+          play_arrow
+        </mat-icon>
+
+      </button>
+    </div>
   </div>
   <div class="right-home-layout">
     <app-header></app-header>
@@ -16,12 +27,15 @@
 
 
   <div class="circle-outer">
-    <mat-progress-spinner mode="determinate" [value]="loaderBarValue" [diameter]="545" strokeWidth="10" color="">
+    <mat-progress-spinner mode="determinate" [value]="loaderBarValue" [diameter]="545" strokeWidth="10">
     </mat-progress-spinner>
-    <div class="circle-inner">
-      <button class="timer-control">
-        <mat-icon>
+    <div class="circle-inner" [ngClass]="{ 'start-inner' : isCounting}">
+      <button class="timer-control" [ngClass]="{ 'start-timer-control' : isCounting }" (click)="clickTimer()">
+        <mat-icon *ngIf="!isCounting" class="play">
           play_arrow
+        </mat-icon>
+        <mat-icon *ngIf="isCounting" class="pause">
+          pause
         </mat-icon>
       </button>
     </div>
